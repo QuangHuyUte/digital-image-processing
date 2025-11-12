@@ -39,13 +39,12 @@ def build_piecewise_lut(r1, s1, r2, s2):
     return lut
 
 def apply_luts_on_luma(bgr_img, luts):
-    """Áp lần lượt các LUT (list) trên kênh Y rồi ghép lại -> giữ màu."""
     if not luts:
         return bgr_img
     ycrcb = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2YCrCb)
     y, cr, cb = cv2.split(ycrcb)
     for lut in luts:
-        if lut is not None:
+        if lut is not None: 
             y = cv2.LUT(y, lut)
     merged = cv2.merge([y, cr, cb])
     return cv2.cvtColor(merged, cv2.COLOR_YCrCb2BGR)
@@ -216,7 +215,7 @@ class DemoApp(ctk.CTk):
     def choose_image(self):
         path = filedialog.askopenfilename(
             title="Chọn ảnh...",
-            filetypes=[("Images","*.png;*.jpg;*.jpeg;*.bmp;*.tif;*.tiff")]
+            filetypes=[("Images","*.png;*.jpg;*.jpeg;*.bmp;*.tif;*.tiff;*.webp")]
         )
         if not path: return
         img = cv2.imread(path, cv2.IMREAD_COLOR)

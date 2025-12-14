@@ -1,4 +1,3 @@
-customtkinter
+streamlit
 opencv-python
 numpy
-Pillow
